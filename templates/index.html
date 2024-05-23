@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Diferenças Divididas</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Calculadora de Diferenças Divididas</h1>
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+        <form action="/" method="POST" id="calc-form">
+            <div class="form-group">
+                <label for="num_values">Quantidade de valores (pares de x e y):</label>
+                <input class="form-control" type="number" name="num_values" id="num_values" min="1">
+            </div>
+            <div class="form-group" id="xy-fields">
+                <!-- Dynamic fields will be added here -->
+            </div>
+            <div class="form-group">
+                <label for="formula_type">Escolha a fórmula:</label>
+                <select class="form-control" name="formula_type" id="formula_type">
+                    <option value="newton">Diferenças Divididas de Newton</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Calcular</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('num_values').addEventListener('input', function() {
+                var numValues = parseInt(this.value);
+                var xyFieldsDiv = document.getElementById('xy-fields');
+                xyFieldsDiv.innerHTML = '';
+
+                for (var i = 0; i < numValues; i++) {
+                    var divFormGroup = document.createElement('div');
+                    divFormGroup.className = 'form-group';
+
+                    var label = document.createElement('label');
+                    label.textContent = 'Par ' + (i + 1) + ' (x, y):';
+                    divFormGroup.appendChild(label);
+
+                    var inputXY = document.createElement('input');
+                    inputXY.type = 'text';
+                    inputXY.className = 'form-control';
+                    inputXY.name = 'xy_values_' + (i + 1); 
+                    inputXY.placeholder = 'Ex: 1,2';
+                    divFormGroup.appendChild(inputXY);
+
+                    xyFieldsDiv.appendChild(divFormGroup);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
