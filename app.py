@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
-
+#jogar no replit
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         num_values = int(request.form['num_values'])
+        x_value = request.form['x_value']
         values = []
         for i in range(1, num_values + 1):
             value = request.form.get(f'xy_values_{i}')
@@ -17,7 +18,10 @@ def index():
             tuples_array.append((x, y))
         print(tuples_array)
         print(num_values, "teste")
-        divided_diferences(tuples_array)
+        diferences = divided_diferences(tuples_array)
+        result = newton_interpolation(float(x_value), tuples_array, diferences)
+            
+        return render_template('index.html', result=result)
     return render_template('index.html')
 
 def divided_diferences(points):
