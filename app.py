@@ -24,13 +24,25 @@ def index():
                 diferences = divided_diferences(tuples_array)
                 result = newton_interpolation(float(x_value), tuples_array,
                                             diferences)
-                return render_template('index.html', result=result)
+                return render_template('index.html', result=result, formula_type=formula_type)
+            if formula_type == 'lagrange':
+                result = lagrange_interpolation(float(x_value), tuples_array)
+                return render_template('index.html', result=result, formula_type=formula_type)
         except Exception as e:
             error = f"Erro: {e}"
             return render_template('index.html', error=error)
     return render_template('index.html')
 
 
+def lagrange_interpolation(x, points):
+    result = 0
+    for i in range(len(points)):
+        term = points[i][1]
+        for j in range(len(points)):
+            if i != j:
+                term *= (x - points[j][0]) / (points[i][0] - points[j][0])
+        result += term
+    return result
 def divided_diferences(points):
     """ 
     Recebe uma lista de tuplas (x,y) e retorna uma lista de coeficientes para o polinômio interpolador de Newton.

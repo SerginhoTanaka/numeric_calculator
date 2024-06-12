@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5 mb-4">Calculadora de Diferenças Divididas</h1>
+        <h1 class="mt-5 mb-4">Calculadora de interpolação </h1>
         {% if error %}
         <div class="alert alert-danger" role="alert">
             {{ error }}
@@ -26,6 +26,7 @@
                 <label for="formula_type">Escolha a fórmula:</label>
                 <select class="form-control" name="formula_type" id="formula_type">
                     <option value="newton">Diferenças Divididas de Newton</option>
+                    <option value="lagrange">Método de Lagrange</option>
                 </select>
             </div>
             <div class="form-group">
@@ -37,7 +38,7 @@
     </div>
     <div> 
         <h1>Resultado</h1>
-        <p>Polinômio interpolador de Newton: {{ result }}</p>
+        <p>Polinômio interpolador {{ formula_type }}: {{ result }}</p>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
