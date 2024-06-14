@@ -55,13 +55,16 @@ Dado um conjunto de dados, os valores de \( a \) e \( b \) podem ser determinado
 onde \( \bar{x} \) e \( \bar{y} \) são as médias de \( x \) e \( y \), respectivamente.
 
 ---
+Fizemos uma atividade cujo objetivo era interpolar uma folha usando diferenças divididas de Newton. Aqui estão algumas imagens da atividade:
+
+![Imagem da Atividade 01](image/caderno.jpg)
+![Imagem da Atividade 02](image/folha.jpg)
+
 
 ## Recursos Adicionais
-
 Para saber mais sobre esses tópicos, visite os seguintes links:
-
-
-- [Link do meu código](https://replit.com/@SerginhoTanaka/calculo-numerico)
+- [Primeira interpolação](https://replit.com/@SerginhoTanaka/interpolation#main.py)
+- [Link do meu código de Newton e Lagrange](https://replit.com/@SerginhoTanaka/calculo-numerico)
 
 
 ---
